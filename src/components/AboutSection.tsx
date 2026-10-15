@@ -44,7 +44,7 @@ export function AboutSection({ mainText, supportingLine, onOpenContact }: AboutS
               {mainText}
             </p>
 
-            <div className="p-4 sm:p-5 rounded-2xl bg-[#0E1119] border border-white/[0.08] text-slate-300 text-sm sm:text-base leading-relaxed flex items-start gap-3">
+            <div className="p-4 sm:p-5 rounded-2xl bg-[#0E1119] border border-white/[0.08] text-slate-300 text-sm sm:text-base leading-relaxed flex items-start gap-3 transition-colors duration-200 hover:border-blue-500/60">
               <Target className="w-5 h-5 text-blue-400 shrink-0 mt-0.5" />
               <p>{supportingLine}</p>
             </div>
@@ -68,7 +68,7 @@ export function AboutSection({ mainText, supportingLine, onOpenContact }: AboutS
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
-            className="lg:col-span-4 bg-[#0A0C12] border border-white/[0.08] rounded-3xl p-6 sm:p-8 space-y-5 text-right shadow-xl"
+            className="lg:col-span-4 bg-[#0A0C12] border border-white/[0.08] rounded-3xl p-6 sm:p-8 space-y-5 text-right shadow-xl transition-colors duration-200 hover:border-blue-500/60"
           >
             <h3 className="text-base font-bold text-white pb-3 border-b border-white/[0.06]">
               مبادئ العمل

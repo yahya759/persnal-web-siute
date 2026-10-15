@@ -61,7 +61,7 @@ export function AboutServicesSection({ onOpenContact }: AboutServicesSectionProp
             </div>
           </div>
 
-          <div className="lg:col-span-5 bg-[#0B0D13] border border-white/[0.08] rounded-3xl p-6 sm:p-8 space-y-5 text-right">
+          <div className="lg:col-span-5 bg-[#0B0D13] border border-white/[0.08] rounded-3xl p-6 sm:p-8 space-y-5 text-right transition-colors duration-200 hover:border-blue-500/60">
             <div className="w-10 h-10 rounded-xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center">
               <Cpu className="w-5 h-5 text-blue-400" />
             </div>
@@ -101,7 +101,7 @@ export function AboutServicesSection({ onOpenContact }: AboutServicesSectionProp
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="rounded-2xl bg-[#0B0D13] border border-white/[0.08] p-6 sm:p-7 text-right space-y-4">
+          <div className="rounded-2xl bg-[#0B0D13] border border-white/[0.08] p-6 sm:p-7 text-right space-y-4 transition-colors duration-200 hover:border-blue-500/60">
             <div className="w-12 h-12 rounded-xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center">
               <Bot className="w-6 h-6 text-blue-400" />
             </div>
@@ -117,7 +117,7 @@ export function AboutServicesSection({ onOpenContact }: AboutServicesSectionProp
             </div>
           </div>
 
-          <div className="rounded-2xl bg-[#0B0D13] border border-white/[0.08] p-6 sm:p-7 text-right space-y-4">
+          <div className="rounded-2xl bg-[#0B0D13] border border-white/[0.08] p-6 sm:p-7 text-right space-y-4 transition-colors duration-200 hover:border-blue-500/60">
             <div className="w-12 h-12 rounded-xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center">
               <Workflow className="w-6 h-6 text-blue-400" />
             </div>
@@ -133,7 +133,7 @@ export function AboutServicesSection({ onOpenContact }: AboutServicesSectionProp
             </div>
           </div>
 
-          <div className="rounded-2xl bg-[#0B0D13] border border-white/[0.08] p-6 sm:p-7 text-right space-y-4">
+          <div className="rounded-2xl bg-[#0B0D13] border border-white/[0.08] p-6 sm:p-7 text-right space-y-4 transition-colors duration-200 hover:border-blue-500/60">
             <div className="w-12 h-12 rounded-xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center">
               <MessageSquareCode className="w-6 h-6 text-blue-400" />
             </div>

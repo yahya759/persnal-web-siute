@@ -137,7 +137,7 @@ export function ProjectsSection({ projects, githubWorkflowsUrl }: ProjectsSectio
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.15 }}
               transition={{ delay: (idx % 4) * 0.08, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ y: -6, borderColor: 'rgba(59, 130, 246, 0.4)' }}
+              whileHover={{ y: -6, borderColor: 'rgba(59, 130, 246, 0.6)' }}
               className="group rounded-2xl bg-[#0B0D13] border border-white/[0.08] p-6 flex flex-col justify-between text-right transition-all duration-200 hover:shadow-2xl hover:shadow-blue-900/15"
             >
               <div className="space-y-4">

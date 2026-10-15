@@ -122,7 +122,7 @@ export function ProcessSection({ steps }: ProcessSectionProps) {
             <motion.div
               key={step.number}
               variants={cardVariants}
-              whileHover={{ y: -5, borderColor: 'rgba(59, 130, 246, 0.35)' }}
+              whileHover={{ y: -5, borderColor: 'rgba(59, 130, 246, 0.6)' }}
               className="relative group rounded-2xl bg-[#0B0D13] border border-white/[0.08] p-6 text-right flex flex-col justify-between hover:shadow-xl hover:shadow-blue-900/10 cursor-default"
             >
               <div className="space-y-4">

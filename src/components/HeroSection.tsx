@@ -230,7 +230,7 @@ export function HeroSection({
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 + idx * 0.1, duration: 0.5 }}
-                  whileHover={{ y: -4, borderColor: 'rgba(59, 130, 246, 0.4)' }}
+                  whileHover={{ y: -4, borderColor: 'rgba(59, 130, 246, 0.6)' }}
                   className="relative p-5 sm:p-6 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.08] transition-all duration-200 group flex flex-col justify-start text-right space-y-3 cursor-default"
                 >
                   <div className="flex items-center gap-3">

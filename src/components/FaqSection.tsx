@@ -53,7 +53,7 @@ export function FaqSection({ faqs }: FaqSectionProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ delay: idx * 0.08, duration: 0.5 }}
-                className="rounded-2xl bg-[#0B0D13] border border-white/[0.08] transition-all overflow-hidden"
+                className="rounded-2xl bg-[#0B0D13] border border-white/[0.08] transition-all overflow-hidden hover:border-blue-500/60"
               >
                 <button
                   onClick={() => toggleFaq(faq.id)}

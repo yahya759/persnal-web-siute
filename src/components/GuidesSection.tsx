@@ -79,7 +79,7 @@ export function GuidesSection({ guides }: GuidesSectionProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.15 }}
               transition={{ delay: idx * 0.08, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ y: -5, borderColor: 'rgba(59, 130, 246, 0.4)' }}
+              whileHover={{ y: -5, borderColor: 'rgba(59, 130, 246, 0.6)' }}
               className="group rounded-2xl bg-[#0B0D13] border border-white/[0.08] p-6 sm:p-7 text-right flex flex-col justify-between transition-all duration-200 hover:shadow-xl hover:shadow-blue-900/10 cursor-default"
             >
               <div className="space-y-4">

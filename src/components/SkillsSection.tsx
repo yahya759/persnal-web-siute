@@ -54,7 +54,7 @@ export function SkillsSection({ groups }: SkillsSectionProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ delay: idx * 0.09, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ y: -4, borderColor: 'rgba(59, 130, 246, 0.35)' }}
+              whileHover={{ y: -4, borderColor: 'rgba(59, 130, 246, 0.6)' }}
               className="rounded-2xl bg-[#0B0D13] border border-white/[0.08] p-6 sm:p-7 text-right space-y-5 transition-all duration-200 cursor-default"
             >
               <div className="flex items-center gap-3">
