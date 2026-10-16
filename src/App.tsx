@@ -25,28 +25,22 @@ import {
 } from './data/portfolioData';
 
 export default function App() {
-  const [name, setName] = useState<string>(() => {
-    const saved = localStorage.getItem('portfolio_name');
-    if (saved && saved !== '[اسمك]' && saved.trim() !== '') {
-      return saved;
-    }
-    return initialPortfolioConfig.name; // "يحيى موسى"
-  });
+  const [name, setName] = useState<string>(initialPortfolioConfig.name);
 
-  const [whatsappLink, setWhatsappLink] = useState<string>(() => {
-    return localStorage.getItem('portfolio_wa_link') || initialPortfolioConfig.whatsappLink;
-  });
+  const [whatsappLink, setWhatsappLink] = useState<string>(initialPortfolioConfig.whatsappLink);
 
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isCustomizerOpen, setIsCustomizerOpen] = useState(false);
 
+  // Remove values older versions of the site saved in the browser (e.g. the old placeholder WhatsApp link)
   useEffect(() => {
-    localStorage.setItem('portfolio_name', name);
-  }, [name]);
-
-  useEffect(() => {
-    localStorage.setItem('portfolio_wa_link', whatsappLink);
-  }, [whatsappLink]);
+    try {
+      localStorage.removeItem('portfolio_name');
+      localStorage.removeItem('portfolio_wa_link');
+    } catch {
+      /* storage unavailable */
+    }
+  }, []);
 
   const handleScrollToProjects = () => {
     const el = document.getElementById('projects');

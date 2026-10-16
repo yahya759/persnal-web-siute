@@ -7,7 +7,7 @@ interface ContactModalProps {
   onClose: () => void;
   whatsappLink: string;
   instagramLink: string;
-  onUpdateWhatsappLink: (link: string) => void;
+  onUpdateWhatsappLink?: (link: string) => void;
 }
 
 export function ContactModal({
@@ -15,27 +15,13 @@ export function ContactModal({
   onClose,
   whatsappLink,
   instagramLink,
-  onUpdateWhatsappLink,
 }: ContactModalProps) {
   const [copiedWa, setCopiedWa] = useState(false);
-  const [tempNumber, setTempNumber] = useState('');
-  const [showConfig, setShowConfig] = useState(false);
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(whatsappLink);
     setCopiedWa(true);
     setTimeout(() => setCopiedWa(false), 2000);
-  };
-
-  const handleSavePhone = () => {
-    const cleanNumber = tempNumber.replace(/[^0-9]/g, '');
-    if (cleanNumber) {
-      const newUrl = `https://wa.me/${cleanNumber}?text=${encodeURIComponent(
-        'مرحبًا يحيى، اطلعت على موقعك وأرغب في مناقشة عملية تستهلك وقتنا لنرى كيف يمكن تبسيطها وأتمتتها.'
-      )}`;
-      onUpdateWhatsappLink(newUrl);
-      setShowConfig(false);
-    }
   };
 
   return (
@@ -97,7 +83,7 @@ export function ContactModal({
                 </div>
 
                 <p className="text-xs text-slate-400 font-mono break-all line-clamp-1" dir="ltr">
-                  {whatsappLink.includes('wa.me/?') ? '[رابط واتساب الذي سأضيفه لاحقًا]' : whatsappLink}
+                  +972 59 774 1299
                 </p>
 
                 <a
@@ -119,7 +105,7 @@ export function ContactModal({
                     <Instagram className="w-4 h-4" />
                     <span>إنستغرام</span>
                   </span>
-                  <span className="text-[11px] text-slate-500 font-mono">[رابط إنستغرام]</span>
+                  <span className="text-[11px] text-slate-500 font-mono" dir="ltr">@yahya._.musa</span>
                 </div>
 
                 <a
@@ -132,46 +118,6 @@ export function ContactModal({
                   <span>صفحة إنستغرام</span>
                   <ExternalLink className="w-3 h-3" />
                 </a>
-              </div>
-
-              {/* Configuration drawer */}
-              <div className="pt-2">
-                {!showConfig ? (
-                  <button
-                    onClick={() => setShowConfig(true)}
-                    className="text-xs text-blue-400 hover:text-blue-300 underline underline-offset-4"
-                  >
-                    هل ترغب في تعيين رقم واتساب الفعلي الآن وتجربته؟
-                  </button>
-                ) : (
-                  <div className="space-y-3 pt-2 bg-white/[0.02] p-3 rounded-xl border border-white/[0.05]">
-                    <label className="block text-xs font-medium text-slate-300">
-                      أدخل رقم واتساب مع رمز الدولة (مثال: 970591234567):
-                    </label>
-                    <div className="flex gap-2">
-                      <input
-                        type="text"
-                        value={tempNumber}
-                        onChange={(e) => setTempNumber(e.target.value)}
-                        placeholder="970591234567"
-                        className="flex-1 px-3 py-2 text-xs text-white bg-[#0A0C11] border border-white/10 rounded-lg focus:outline-none focus:border-blue-500 text-left font-mono"
-                        dir="ltr"
-                      />
-                      <button
-                        onClick={handleSavePhone}
-                        className="px-3 py-2 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-500 rounded-lg"
-                      >
-                        حفظ
-                      </button>
-                      <button
-                        onClick={() => setShowConfig(false)}
-                        className="px-2 py-2 text-xs text-slate-400 hover:text-white"
-                      >
-                        إلغاء
-                      </button>
-                    </div>
-                  </div>
-                )}
               </div>
             </div>
 
