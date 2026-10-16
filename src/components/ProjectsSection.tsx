@@ -128,128 +128,117 @@ export function ProjectsSection({ projects, githubWorkflowsUrl }: ProjectsSectio
           </a>
         </motion.div>
 
-        {/* 9 Projects Grid across full width */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
-          {projects.map((project, idx) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ delay: (idx % 4) * 0.08, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ y: -6, borderColor: 'rgba(59, 130, 246, 0.6)' }}
-              className="group rounded-2xl bg-[#0B0D13] border border-white/[0.08] p-6 flex flex-col justify-between text-right transition-all duration-200 hover:shadow-2xl hover:shadow-blue-900/15"
-            >
-              <div className="space-y-4">
-                
-                {/* Visual workflow banner preview */}
-                <div className="relative h-28 w-full rounded-xl bg-[#07090D] border border-white/[0.06] p-3 flex flex-col justify-between overflow-hidden">
-                  <div className="flex items-center justify-between">
-                    <div className="w-8 h-8 rounded-lg bg-blue-600/15 border border-blue-500/25 flex items-center justify-center">
-                      {getProjectIcon(project.id)}
-                    </div>
-                    
-                    <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-md border ${
-                      project.status === 'free' 
-                        ? 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20' 
-                        : 'text-amber-400 bg-amber-500/10 border-amber-500/20'
-                    }`}>
-                      {project.priceLabel || (project.status === 'free' ? 'مجاني' : 'مشروع مدفوع')}
-                    </span>
+        {/* Projects grid: 3 clean columns, equal-height cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
+          {projects.map((project, idx) => {
+            const isFree = project.status === 'free';
+            const visibleTech = project.technologies.slice(0, 3);
+            const extraTech = project.technologies.length - visibleTech.length;
+
+            return (
+              <motion.article
+                key={project.id}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ delay: (idx % 3) * 0.07, duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                whileHover={{ borderColor: 'rgba(59, 130, 246, 0.6)' }}
+                onClick={() => setSelectedProject(project)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setSelectedProject(project);
+                  }
+                }}
+                tabIndex={0}
+                role="button"
+                aria-label={`تفاصيل مشروع ${project.title}`}
+                className="group flex flex-col rounded-2xl bg-[#0B0D13] hover:bg-[#0D1017] border border-white/[0.08] p-7 text-right cursor-pointer transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/60"
+              >
+                {/* Top row: icon + status */}
+                <div className="flex items-center justify-between mb-6">
+                  <div className="w-10 h-10 rounded-xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center">
+                    {getProjectIcon(project.id)}
                   </div>
 
-                  <div className="flex items-center gap-1.5 overflow-x-hidden font-mono text-[10px] text-slate-400">
-                    {(project.workflowNodes || ['Trigger', 'LLM Agent', 'Output']).slice(0, 3).map((node, i) => (
-                      <span key={node} className="inline-flex items-center gap-1 bg-white/[0.04] px-2 py-0.5 rounded border border-white/5 whitespace-nowrap">
-                        <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
-                        <span>{node}</span>
-                        {i < 2 && <span className="text-slate-600 mr-0.5">←</span>}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="absolute inset-x-0 bottom-0 h-[1px] bg-gradient-to-r from-transparent via-blue-500/30 to-transparent" />
+                  <span
+                    className={`inline-flex items-center gap-2 text-xs font-medium ${
+                      isFree ? 'text-emerald-400' : 'text-amber-400'
+                    }`}
+                  >
+                    <span className={`w-1.5 h-1.5 rounded-full ${isFree ? 'bg-emerald-400' : 'bg-amber-400'}`} />
+                    {project.priceLabel || (isFree ? 'مجاني' : 'مشروع مدفوع')}
+                  </span>
                 </div>
 
-                {/* Title & Category */}
-                <div className="space-y-1">
-                  <span className="text-xs text-blue-400 font-medium">
-                    {project.category}
-                  </span>
-                  <h3 className="text-lg font-bold text-white group-hover:text-blue-300 transition-colors">
+                {/* Title, category, description */}
+                <div className="flex-1 space-y-2.5">
+                  <span className="block text-xs text-slate-500">{project.category}</span>
+                  <h3 className="text-lg font-bold text-white leading-snug group-hover:text-blue-300 transition-colors">
                     {project.title}
                   </h3>
+                  <p className="text-sm text-slate-400 leading-7 line-clamp-3">
+                    {project.description}
+                  </p>
                 </div>
 
-                {/* Short Description */}
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
-                  {project.description}
-                </p>
-
-                {/* Note disclaimer */}
-                {project.note && (
-                  <div className="p-2.5 rounded-lg bg-amber-500/[0.06] border border-amber-500/20 text-amber-300 text-[11px] leading-relaxed flex items-start gap-1.5">
-                    <AlertCircle className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />
-                    <span>{project.note}</span>
-                  </div>
-                )}
-              </div>
-
-              {/* Technologies & Actions */}
-              <div className="mt-6 pt-4 border-t border-white/[0.06] space-y-3">
-                <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-slate-400 font-mono">
-                  {project.technologies.map((tech, i) => (
-                    <span key={tech} className="inline-flex items-center">
-                      <span className="hover:text-slate-200">{tech}</span>
-                      {i < project.technologies.length - 1 && (
-                        <span className="mx-1 text-slate-600 select-none">·</span>
-                      )}
+                {/* Technologies */}
+                <div className="flex flex-wrap gap-2 mt-6">
+                  {visibleTech.map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-2.5 py-1 rounded-full bg-white/[0.04] text-xs text-slate-400"
+                    >
+                      {tech}
                     </span>
                   ))}
+                  {extraTech > 0 && (
+                    <span className="px-2.5 py-1 rounded-full text-xs text-slate-500">+{extraTech}</span>
+                  )}
                 </div>
 
-                <div className="flex items-center justify-between pt-1">
-                  {/* Details Button */}
-                  <button
-                    onClick={() => setSelectedProject(project)}
-                    className="inline-flex items-center gap-1 text-xs font-semibold text-blue-400 hover:text-blue-300 transition-colors"
-                  >
-                    <span>التفاصيل</span>
-                    <ChevronLeft className="w-4 h-4" />
-                  </button>
+                {/* Footer actions */}
+                <div className="flex items-center justify-between mt-6 pt-5 border-t border-white/[0.06]">
+                  <span className="inline-flex items-center gap-1 text-sm font-medium text-blue-400 group-hover:text-blue-300 transition-colors">
+                    التفاصيل
+                    <ChevronLeft className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" />
+                  </span>
 
-                  {/* Direct Action */}
-                  {project.status === 'free' ? (
+                  {isFree ? (
                     <button
-                      onClick={() => handleDownloadWorkflow(project)}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-200 hover:text-white bg-[#141822] hover:bg-blue-600 border border-white/[0.08] hover:border-blue-500 rounded-lg transition-all"
-                      title="تنزيل ملف الـWorkflow المباشر بصيغة JSON"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleDownloadWorkflow(project);
+                      }}
+                      className="inline-flex items-center gap-1.5 text-sm text-slate-400 hover:text-white transition-colors"
+                      title="تنزيل ملف الـWorkflow بصيغة JSON"
                     >
                       {downloadSuccessId === project.id ? (
                         <>
-                          <CheckCircle className="w-3.5 h-3.5 text-emerald-400" />
+                          <CheckCircle className="w-4 h-4 text-emerald-400" />
                           <span className="text-emerald-400">تم التنزيل</span>
                         </>
                       ) : (
                         <>
-                          <Download className="w-3.5 h-3.5" />
-                          <span>تنزيل Workflow</span>
+                          <Download className="w-4 h-4" />
+                          <span>تنزيل</span>
                         </>
                       )}
                     </button>
                   ) : (
                     <a
-                      href={project.buyUrl || "#contact"}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-white bg-amber-600 hover:bg-amber-500 rounded-lg transition-all"
+                      href={project.buyUrl || '#contact'}
+                      onClick={(e) => e.stopPropagation()}
+                      className="inline-flex items-center gap-1.5 text-sm font-medium text-amber-400 hover:text-amber-300 transition-colors"
                     >
-                      <ShoppingCart className="w-3.5 h-3.5" />
-                      <span>شراء المشروع</span>
+                      <ShoppingCart className="w-4 h-4" />
+                      <span>شراء</span>
                     </a>
                   )}
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.article>
+            );
+          })}
         </div>
 
         {/* Unified Project Details Modal with AnimatePresence */}
