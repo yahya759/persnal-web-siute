@@ -85,7 +85,7 @@ export function ContactModal({
                 <div className="flex items-center justify-between">
                   <span className="text-xs text-emerald-400 font-semibold flex items-center gap-1.5">
                     <MessageCircle className="w-4 h-4" />
-                    <span>واتساب [رابط مؤقت]</span>
+                    <span>واتساب</span>
                   </span>
                   <button
                     onClick={handleCopyLink}
@@ -117,7 +117,7 @@ export function ContactModal({
                 <div className="flex items-center justify-between">
                   <span className="text-xs text-pink-400 font-semibold flex items-center gap-1.5">
                     <Instagram className="w-4 h-4" />
-                    <span>إنستغرام [رابط مؤقت]</span>
+                    <span>إنستغرام</span>
                   </span>
                   <span className="text-[11px] text-slate-500 font-mono">[رابط إنستغرام]</span>
                 </div>

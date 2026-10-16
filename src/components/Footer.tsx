@@ -68,7 +68,7 @@ export function Footer({
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 rounded-xl bg-white/[0.04] hover:bg-emerald-600/20 text-slate-400 hover:text-emerald-400 border border-white/[0.06] transition-colors"
-              title="واتساب [رابط مؤقت]"
+              title="واتساب"
             >
               <MessageCircle className="w-4 h-4" />
             </a>
@@ -78,7 +78,7 @@ export function Footer({
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 rounded-xl bg-white/[0.04] hover:bg-pink-600/20 text-slate-400 hover:text-pink-400 border border-white/[0.06] transition-colors"
-              title="إنستغرام [رابط مؤقت]"
+              title="إنستغرام"
             >
               <Instagram className="w-4 h-4" />
             </a>

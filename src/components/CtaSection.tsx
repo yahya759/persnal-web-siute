@@ -60,7 +60,7 @@ export function CtaSection({
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 rounded-xl transition-all shadow-lg shadow-emerald-600/25 whitespace-nowrap"
             >
               <MessageCircle className="w-5 h-5" />
-              <span>محادثة واتساب [رابط مؤقت]</span>
+              <span>محادثة واتساب</span>
               <ArrowUpRight className="w-4 h-4 rotate-180" />
             </motion.a>
 
@@ -74,7 +74,7 @@ export function CtaSection({
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-medium text-slate-200 hover:text-white bg-[#141822] hover:bg-[#1C212E] border border-white/[0.08] rounded-xl transition-all whitespace-nowrap"
             >
               <Instagram className="w-4 h-4 text-pink-400" />
-              <span>إنستغرام [رابط مؤقت]</span>
+              <span>إنستغرام</span>
             </motion.a>
 
             {/* Form modal button */}
