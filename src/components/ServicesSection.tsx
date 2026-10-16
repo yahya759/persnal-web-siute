@@ -34,7 +34,7 @@ export function ServicesSection({ services, onOpenContact }: ServicesSectionProp
 
   return (
     <section id="services" className="py-16 md:py-24 border-t border-white/[0.06] relative">
-      <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
         
         {/* Section Header */}
         <motion.div 
@@ -45,9 +45,6 @@ export function ServicesSection({ services, onOpenContact }: ServicesSectionProp
           className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 text-right"
         >
           <div className="space-y-3">
-            <span className="text-xs sm:text-sm font-semibold tracking-wider text-blue-400">
-              مجالات الخدمة
-            </span>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
               كيف أساعد عملك؟
             </h2>
@@ -67,40 +64,33 @@ export function ServicesSection({ services, onOpenContact }: ServicesSectionProp
           </motion.button>
         </motion.div>
 
-        {/* 5 Cards Grid across full width with staggered animation */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 lg:gap-6">
+        {/* Services as a quiet list: one row per service */}
+        <div className="divide-y divide-white/[0.06] border-y border-white/[0.06]">
           {services.map((service, index) => (
             <motion.div
               key={service.id}
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ delay: index * 0.08, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ y: -5, borderColor: 'rgba(59, 130, 246, 0.6)' }}
-              className="group rounded-2xl bg-[#0B0D13] border border-white/[0.08] p-6 flex flex-col justify-between text-right transition-all duration-200 hover:shadow-xl hover:shadow-blue-900/10 cursor-default"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ delay: index * 0.05, duration: 0.5 }}
+              className="group grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start py-7 px-2 text-right transition-colors hover:bg-white/[0.02]"
             >
-              <div className="space-y-4">
-                <div className="w-11 h-11 rounded-xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center group-hover:bg-blue-600/20 group-hover:scale-105 transition-all">
+              <div className="md:col-span-4 flex items-center gap-4">
+                <span className="w-10 h-10 shrink-0 rounded-xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center group-hover:border-blue-500/60 transition-colors">
                   {getIcon(service.iconName)}
-                </div>
-
-                <h3 className="text-lg font-bold text-white group-hover:text-blue-300 transition-colors">
-                  {service.title}
-                </h3>
-
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
-                  {service.description}
-                </p>
+                </span>
+                <h3 className="text-lg font-bold text-white leading-snug">{service.title}</h3>
               </div>
 
+              <p className="md:col-span-5 text-sm sm:text-base text-slate-400 leading-7">
+                {service.description}
+              </p>
+
               {service.tags && (
-                <div className="mt-6 pt-4 border-t border-white/[0.06] flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-slate-400">
-                  {service.tags.map((tag, idx) => (
-                    <span key={tag} className="inline-flex items-center">
-                      <span className="hover:text-slate-200">{tag}</span>
-                      {idx < service.tags!.length - 1 && (
-                        <span className="mx-1 text-slate-600 select-none">·</span>
-                      )}
+                <div className="md:col-span-3 flex flex-wrap gap-2 md:justify-start">
+                  {service.tags.map((tag) => (
+                    <span key={tag} className="px-2.5 py-1 rounded-full bg-white/[0.04] text-xs text-slate-400">
+                      {tag}
                     </span>
                   ))}
                 </div>

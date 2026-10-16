@@ -91,7 +91,7 @@ export function HeroSection({
         aria-hidden="true"
       />
 
-      <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 relative">
         {/* Top 2-Column Split: Text Right, Photo Left in RTL */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
@@ -103,48 +103,25 @@ export function HeroSection({
               className="lg:col-span-7 flex flex-col items-start text-right space-y-6"
             >
               
-              {/* Name & Role */}
-              <motion.div variants={itemFadeUp} className="space-y-2">
-                <div className="inline-flex items-center gap-2 group">
-                  <h1 
-                    onClick={onOpenNameEdit}
-                    title="انقر لتعديل الاسم"
-                    className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white hover:text-blue-200 transition-colors cursor-pointer select-none"
-                  >
-                    {name}
-                  </h1>
-                </div>
-
-                <div className="text-sm sm:text-base font-semibold tracking-wider text-blue-400 flex items-center gap-2">
-                  <span>{roleTitle}</span>
-                  <span className="text-slate-600">|</span>
-                  <span className="font-mono text-xs sm:text-sm tracking-widest uppercase text-blue-400/90">{roleSub}</span>
-                </div>
+              {/* Name & Role: quiet identity line */}
+              <motion.div variants={itemFadeUp} className="flex items-center gap-3 text-slate-400">
+                <span className="text-lg sm:text-xl font-semibold text-white">{name}</span>
+                <span className="w-px h-4 bg-white/20" aria-hidden="true" />
+                <span className="text-sm sm:text-base">{roleTitle}</span>
               </motion.div>
 
-              {/* Main Headline */}
-              <motion.h2 
+              {/* Main Headline: the single focal point */}
+              <motion.h1
                 variants={itemFadeUp}
-                className="text-2xl sm:text-3xl lg:text-[2rem] font-bold leading-snug text-slate-100 max-w-2xl text-balance"
+                className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.35] text-white max-w-2xl text-balance"
               >
                 {headline}
-              </motion.h2>
-
-              {/* Personal Context Line */}
-              <motion.div 
-                variants={itemFadeUp}
-                className="flex items-center gap-2.5 text-xs sm:text-sm text-slate-400 bg-white/[0.03] px-3.5 py-2 rounded-xl border border-white/[0.06] max-w-xl"
-              >
-                <Info className="w-4 h-4 text-blue-400 shrink-0" />
-                <p className="leading-relaxed font-normal">
-                  {personalNote}
-                </p>
-              </motion.div>
+              </motion.h1>
 
               {/* Short Bio */}
-              <motion.p 
+              <motion.p
                 variants={itemFadeUp}
-                className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl"
+                className="text-slate-400 text-base sm:text-lg leading-8 max-w-xl"
               >
                 {bio}
               </motion.p>
@@ -221,60 +198,24 @@ export function HeroSection({
 
           </div>
 
-          {/* Three Feature Cards: Exactly matching the 3 bottom cards from the reference */}
-          <div className="mt-10 sm:mt-12 pt-8 sm:pt-10 border-t border-white/[0.06]">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
-              {featureCards.map((card, idx) => (
-                <motion.div 
-                  key={card.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 + idx * 0.1, duration: 0.5 }}
-                  whileHover={{ y: -4, borderColor: 'rgba(59, 130, 246, 0.6)' }}
-                  className="relative p-5 sm:p-6 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.08] transition-all duration-200 group flex flex-col justify-start text-right space-y-3 cursor-default"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center group-hover:scale-105 group-hover:bg-blue-600/20 transition-all">
-                      {getCardIcon(card.iconName)}
-                    </div>
-                    <h3 className="text-base font-semibold text-white group-hover:text-blue-300 transition-colors">
-                      {card.title}
-                    </h3>
-                  </div>
-                  <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
-                    {card.description}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
+          {/* Three quiet highlights (no boxes) */}
+          <div className="mt-14 pt-10 border-t border-white/[0.06] grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+            {featureCards.map((card, idx) => (
+              <motion.div
+                key={card.id}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4 + idx * 0.1, duration: 0.6 }}
+                className="text-right space-y-2"
+              >
+                <div className="flex items-center gap-3">
+                  <span className="text-blue-400">{getCardIcon(card.iconName)}</span>
+                  <h3 className="text-base font-semibold text-white">{card.title}</h3>
+                </div>
+                <p className="text-sm text-slate-400 leading-7">{card.description}</p>
+              </motion.div>
+            ))}
           </div>
-
-          {/* Bottom Technologies Ribbon */}
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.7, duration: 0.6 }}
-            className="mt-8 pt-6 border-t border-white/[0.06] flex flex-wrap items-center gap-x-3 gap-y-2 text-xs sm:text-sm"
-          >
-            <span className="font-semibold text-blue-400 whitespace-nowrap">
-              تقنيات أستخدمها:
-            </span>
-            <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-slate-300 font-mono text-xs sm:text-[13px]">
-              {techStack.map((tech, idx) => (
-                <React.Fragment key={tech.name}>
-                  <span 
-                    title={tech.role}
-                    className="hover:text-blue-300 transition-colors cursor-default"
-                  >
-                    {tech.name}
-                  </span>
-                  {idx < techStack.length - 1 && (
-                    <span className="text-slate-600 select-none" aria-hidden="true">·</span>
-                  )}
-                </React.Fragment>
-              ))}
-            </div>
-          </motion.div>
       </div>
     </section>
   );

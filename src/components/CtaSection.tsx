@@ -25,7 +25,7 @@ export function CtaSection({
         aria-hidden="true"
       />
 
-      <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 text-center">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 text-center">
         <motion.div 
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           whileInView={{ opacity: 1, scale: 1, y: 0 }}

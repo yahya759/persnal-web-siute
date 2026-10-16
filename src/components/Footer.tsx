@@ -19,7 +19,7 @@ export function Footer({
 }: FooterProps) {
   return (
     <footer className="border-t border-white/[0.06] bg-[#07080B] py-14">
-      <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
         
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center text-right">
           

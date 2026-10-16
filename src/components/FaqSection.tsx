@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ChevronDown, HelpCircle } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import { FaqItem } from '../data/portfolioData';
 
 interface FaqSectionProps {
@@ -21,7 +21,7 @@ export function FaqSection({ faqs }: FaqSectionProps) {
 
   return (
     <section id="faq" className="py-16 md:py-24 border-t border-white/[0.06] relative">
-      <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
         
         {/* Section Header */}
         <motion.div 
@@ -31,9 +31,6 @@ export function FaqSection({ faqs }: FaqSectionProps) {
           transition={{ duration: 0.6 }}
           className="space-y-3 text-right mb-12"
         >
-          <span className="text-xs sm:text-sm font-semibold tracking-wider text-blue-400">
-            إجابات واضحة
-          </span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
             الأسئلة الشائعة
           </h2>
@@ -42,37 +39,28 @@ export function FaqSection({ faqs }: FaqSectionProps) {
           </p>
         </motion.div>
 
-        {/* FAQ Accordion - 2-column on lg with motion */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          {faqs.map((faq, idx) => {
+        {/* FAQ: one column, plain rows */}
+        <div className="max-w-3xl divide-y divide-white/[0.06] border-y border-white/[0.06]">
+          {faqs.map((faq) => {
             const isOpen = !!openIds[faq.id];
             return (
-              <motion.div
-                key={faq.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ delay: idx * 0.08, duration: 0.5 }}
-                className="rounded-2xl bg-[#0B0D13] border border-white/[0.08] transition-all overflow-hidden hover:border-blue-500/60"
-              >
+              <div key={faq.id}>
                 <button
                   onClick={() => toggleFaq(faq.id)}
-                  className="w-full p-5 sm:p-6 text-right flex items-center justify-between gap-4 hover:bg-white/[0.02] transition-colors"
+                  aria-expanded={isOpen}
+                  className="w-full py-5 text-right flex items-center justify-between gap-4 group"
                 >
-                  <div className="flex items-center gap-3">
-                    <HelpCircle className="w-4 h-4 text-blue-400 shrink-0" />
-                    <h3 className="text-sm sm:text-base font-bold text-white">
-                      {faq.question}
-                    </h3>
-                  </div>
+                  <h3 className="text-base sm:text-lg font-semibold text-white group-hover:text-blue-300 transition-colors">
+                    {faq.question}
+                  </h3>
                   <ChevronDown
-                    className={`w-4 h-4 text-slate-400 transition-transform duration-200 shrink-0 ${
+                    className={`w-5 h-5 text-slate-500 transition-transform duration-200 shrink-0 ${
                       isOpen ? 'rotate-180 text-blue-400' : ''
                     }`}
                   />
                 </button>
 
-                <AnimatePresence>
+                <AnimatePresence initial={false}>
                   {isOpen && (
                     <motion.div
                       initial={{ height: 0, opacity: 0 }}
@@ -81,13 +69,13 @@ export function FaqSection({ faqs }: FaqSectionProps) {
                       transition={{ duration: 0.25, ease: 'easeInOut' }}
                       className="overflow-hidden"
                     >
-                      <div className="px-5 pb-5 sm:px-6 sm:pb-6 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-white/[0.04] pt-3 text-right">
+                      <p className="pb-6 text-sm sm:text-base text-slate-400 leading-8 text-right max-w-2xl">
                         {faq.answer}
-                      </div>
+                      </p>
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </motion.div>
+              </div>
             );
           })}
         </div>

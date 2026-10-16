@@ -49,7 +49,7 @@ export function GuidesSection({ guides }: GuidesSectionProps) {
 
   return (
     <section id="guides" className="py-16 md:py-24 border-t border-white/[0.06] relative">
-      <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
         
         {/* Section Header */}
         <motion.div 
@@ -59,9 +59,6 @@ export function GuidesSection({ guides }: GuidesSectionProps) {
           transition={{ duration: 0.6 }}
           className="space-y-3 text-right mb-12"
         >
-          <span className="text-xs sm:text-sm font-semibold tracking-wider text-blue-400">
-            المعرفة والمراجع
-          </span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
             أدلة وموارد عملية
           </h2>

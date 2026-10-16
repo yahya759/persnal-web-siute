@@ -41,7 +41,7 @@ export function Navbar({ name, onOpenContact, onOpenSettings }: NavbarProps) {
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       className="sticky top-0 z-40 w-full backdrop-blur-md bg-[#08090C]/90 border-b border-white/[0.06]"
     >
-      <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
         {/* Top Bar Contract: 3 zones separated by gap-8 */}
         <div className="flex items-center justify-between gap-6 sm:gap-8 h-20">
           
@@ -135,14 +135,6 @@ export function Navbar({ name, onOpenContact, onOpenSettings }: NavbarProps) {
 
           {/* Zone 3 (RTL: Left): 1 Primary Action */}
           <div className="flex items-center gap-3 shrink-0">
-            <button
-              onClick={onOpenSettings}
-              title="تعديل الاسم"
-              className="p-2 text-slate-400 hover:text-white rounded-lg hover:bg-white/[0.05] transition-colors"
-              aria-label="تعديل الاسم"
-            >
-              <Sparkles className="w-4 h-4 text-blue-400" />
-            </button>
 
             <motion.button
               whileHover={{ scale: 1.02 }}
