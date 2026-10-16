@@ -5,6 +5,7 @@ import {
   CalendarCheck, 
   BarChart3, 
   Network,
+  Users,
   ArrowUpRight
 } from 'lucide-react';
 import { ServiceItem } from '../data/portfolioData';
@@ -27,6 +28,8 @@ export function ServicesSection({ services, onOpenContact }: ServicesSectionProp
         return <BarChart3 className="w-5 h-5 text-blue-400" />;
       case 'integration':
         return <Network className="w-5 h-5 text-blue-400" />;
+      case 'crm':
+        return <Users className="w-5 h-5 text-blue-400" />;
       default:
         return <Bot className="w-5 h-5 text-blue-400" />;
     }
@@ -49,7 +52,7 @@ export function ServicesSection({ services, onOpenContact }: ServicesSectionProp
               كيف أساعد عملك؟
             </h2>
             <p className="text-slate-400 text-sm sm:text-base max-w-2xl">
-              حلول عملية مبنية لتقليل الاختناقات التشغيلية ومضاعفة إنتاجية فريقك عبر الأتمتة والوكلاء الأذكياء.
+              عندك عملية بتتكرر كل يوم؟ بحوّلها لحل ذكي يشتغل عنك، وبوفرلك وقتك لشغل أكبر.
             </p>
           </div>
 

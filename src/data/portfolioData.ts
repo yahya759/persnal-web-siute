@@ -23,7 +23,7 @@ export interface ServiceItem {
   id: string;
   title: string;
   description: string;
-  iconName: 'bot' | 'workflow' | 'customer' | 'analysis' | 'integration';
+  iconName: 'bot' | 'workflow' | 'customer' | 'analysis' | 'integration' | 'crm';
   tags?: string[];
 }
 
@@ -131,39 +131,32 @@ export const techStackData: TechItem[] = [
 
 export const servicesData: ServiceItem[] = [
   {
-    id: "ai-agents",
-    title: "حلول الذكاء الاصطناعي والوكلاء",
-    description: "بناء وكلاء يساعدون في تنفيذ مهام العمل والتعامل مع المعلومات والأدوات.",
+    id: "ai-agent",
+    title: "وكيل ذكي يشتغل عنك",
+    description: "وكيل بيرد على عملائك، وبيستقبل الطلبات والحجوزات على واتساب وتيليجرام، بدون ما تكون قدام الموبايل.",
     iconName: "bot",
-    tags: ["وكلاء أذكياء", "استدعاء الأدوات", "ReAct"],
+    tags: ["واتساب", "تيليجرام", "حجوزات"],
   },
   {
     id: "process-automation",
-    title: "أتمتة العمليات",
-    description: "تحويل المهام المتكررة إلى إجراءات مترابطة تقلل العمل اليدوي.",
+    title: "أتمتة الشغل المتكرر",
+    description: "الطلبات والفواتير والجداول والتقارير بتمشي لحالها، بدل ما تعملها بإيدك كل يوم.",
     iconName: "workflow",
-    tags: ["سير عمل n8n", "تقليل الإدخال اليدوي", "تكاملات سحابية"],
+    tags: ["n8n", "Google Sheets", "تقارير تلقائية"],
   },
   {
-    id: "customer-service",
-    title: "خدمة العملاء والحجوزات",
-    description: "مساعدين للرد على الأسئلة، وجمع تفاصيل الحجز، وتنظيم المواعيد.",
-    iconName: "customer",
-    tags: ["Telegram Bot", "مزامنة التقويم", "تأكيد فوري"],
+    id: "custom-crm",
+    title: "CRM على مقاسك",
+    description: "عملاؤك وطلباتك ومتابعاتك بمكان واحد، بدل الدفاتر والرسائل المبعثرة.",
+    iconName: "crm",
+    tags: ["لوحة تحكم", "متابعة العملاء", "Supabase"],
   },
   {
-    id: "chat-analysis",
-    title: "تحليل المحادثات والطلبات",
-    description: "تصنيف الرسائل والشكاوى، واستخراج ملخصات تساعد على متابعة العمل.",
-    iconName: "analysis",
-    tags: ["تصنيف شكاوى", "تقارير أسبوعية", "متابعة الجودة"],
-  },
-  {
-    id: "system-integration",
-    title: "ربط الأدوات والأنظمة",
-    description: "ربط الخدمات وقواعد البيانات وواجهات API ضمن حلول عملية.",
+    id: "tools-integration",
+    title: "ربط كل أدواتك بوكيل واحد",
+    description: "واتساب والجداول والتقويم والإيميل بتتوصل ببعض، والوكيل بينفذ عنك.",
     iconName: "integration",
-    tags: ["Supabase", "REST APIs", "Webhooks", "Google Workspace"],
+    tags: ["MCP", "APIs", "Webhooks"],
   },
 ];
 
