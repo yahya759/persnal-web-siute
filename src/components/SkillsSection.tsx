@@ -40,7 +40,7 @@ export function SkillsSection({ groups }: SkillsSectionProps) {
           transition={{ duration: 0.6 }}
           className="space-y-3 text-right mb-12"
         >
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-white leading-tight">
             التقنيات ومجالات العمل
           </h2>
           <p className="text-slate-400 text-sm sm:text-base max-w-2xl">

@@ -1,3 +1,4 @@
+import { WorkflowBackdrop } from './WorkflowBackdrop';
 import React from 'react';
 import { motion, Variants } from 'motion/react';
 import { 
@@ -78,7 +79,13 @@ export function HeroSection({
   };
 
   return (
-    <section className="relative pt-4 pb-16 md:pt-8 md:pb-24 overflow-hidden">
+    <section className="relative pt-4 pb-16 md:pt-8 md:pb-44 overflow-hidden">
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: 'radial-gradient(ellipse 45% 55% at 24% 38%, rgba(37,99,235,0.20), transparent 70%)' }}
+      />
+      <WorkflowBackdrop />
       {/* Background ambient lighting */}
       <motion.div 
         initial={{ opacity: 0, scale: 0.8 }}

@@ -36,7 +36,7 @@ export function AboutSection({ mainText, supportingLine, onOpenContact }: AboutS
               <span>عنّي</span>
             </div>
 
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight leading-snug">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-white leading-tight leading-snug">
               مهندس ذكاء اصطناعي وأتمتة للأعمال
             </h2>
 

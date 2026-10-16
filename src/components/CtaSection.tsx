@@ -31,7 +31,7 @@ export function CtaSection({
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="relative w-full max-w-5xl mx-auto rounded-3xl bg-[#0B0D14]/90 border border-white/[0.08] p-8 sm:p-12 lg:p-16 space-y-8 shadow-2xl"
+          className="relative w-full max-w-5xl mx-auto rounded-3xl bg-[radial-gradient(ellipse_at_50%_0%,rgba(37,99,235,0.22),transparent_65%),linear-gradient(#0B0D14,#0B0D14)] border border-white/[0.08] p-8 sm:p-12 lg:p-16 space-y-8 shadow-2xl"
         >
           
           <div className="w-12 h-12 rounded-2xl bg-blue-600/15 border border-blue-500/25 flex items-center justify-center mx-auto text-blue-400">
@@ -39,7 +39,7 @@ export function CtaSection({
           </div>
 
           <div className="space-y-4 max-w-2xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight leading-snug">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-white leading-tight leading-snug">
               {headline}
             </h2>
             <p className="text-slate-400 text-sm sm:text-base leading-relaxed">

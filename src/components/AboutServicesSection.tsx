@@ -38,7 +38,7 @@ export function AboutServicesSection({ onOpenContact }: AboutServicesSectionProp
             <span className="text-xs sm:text-sm font-semibold tracking-wider text-blue-400">
               عن المهندس ورؤية العمل
             </span>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-white leading-tight">
               أهندس الحلول التقنية لتبسيط العمليات المعقدة
             </h2>
             <div className="space-y-4 text-slate-300 text-sm sm:text-base leading-relaxed">
@@ -92,7 +92,7 @@ export function AboutServicesSection({ onOpenContact }: AboutServicesSectionProp
           <span className="text-xs sm:text-sm font-semibold tracking-wider text-blue-400">
             مجالات التخصص
           </span>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-white leading-tight">
             حلول أتمتة وذكاء اصطناعي مصممة خصيصًا لمشروعك
           </h2>
           <p className="text-slate-400 text-sm sm:text-base max-w-2xl">

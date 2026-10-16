@@ -33,7 +33,7 @@ export function ServicesSection({ services, onOpenContact }: ServicesSectionProp
   };
 
   return (
-    <section id="services" className="py-16 md:py-24 border-t border-white/[0.06] relative">
+    <section id="services" className="py-16 md:py-24 border-t border-white/[0.06] relative bg-white/[0.018]">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
         
         {/* Section Header */}
@@ -45,7 +45,7 @@ export function ServicesSection({ services, onOpenContact }: ServicesSectionProp
           className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 text-right"
         >
           <div className="space-y-3">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-white leading-tight">
               كيف أساعد عملك؟
             </h2>
             <p className="text-slate-400 text-sm sm:text-base max-w-2xl">
