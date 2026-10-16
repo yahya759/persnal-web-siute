@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Layers, Cpu, Database, BrainCircuit } from 'lucide-react';
+import { Layers, Cpu, Database, BrainCircuit, Code2, Rocket, Wrench } from 'lucide-react';
 import { TechGroup } from '../data/portfolioData';
 
 interface SkillsSectionProps {
@@ -17,6 +17,12 @@ export function SkillsSection({ groups }: SkillsSectionProps) {
         return <Database className="w-5 h-5 text-blue-400" />;
       case 'مفاهيم الذكاء الاصطناعي':
         return <BrainCircuit className="w-5 h-5 text-blue-400" />;
+      case 'التطوير والواجهات':
+        return <Code2 className="w-5 h-5 text-blue-400" />;
+      case 'الاستضافة والنشر':
+        return <Rocket className="w-5 h-5 text-blue-400" />;
+      case 'أدوات الإنتاج':
+        return <Wrench className="w-5 h-5 text-blue-400" />;
       default:
         return <Cpu className="w-5 h-5 text-blue-400" />;
     }
@@ -45,7 +51,7 @@ export function SkillsSection({ groups }: SkillsSectionProps) {
           </p>
         </motion.div>
 
-        {/* 4 Tech Groups Grid across full width with motion */}
+        {/* Tech Groups Grid across full width with motion */}
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
           {groups.map((group, idx) => (
             <motion.div

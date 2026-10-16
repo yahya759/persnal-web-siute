@@ -206,6 +206,8 @@ export const techGroupsData: TechGroup[] = [
     description: "محركات الذكاء الاصطناعي والاستدلال فائق السرعة",
     items: [
       { name: "Groq", description: "استدلال LPU فائق السرعة بزمن استجابة منخفض" },
+      { name: "Fireworks AI", description: "تشغيل نماذج مفتوحة المصدر بسرعة وتكلفة منخفضة" },
+      { name: "Jina.ai", description: "قراءة صفحات الويب واستخراج المحتوى للبحث الدلالي" },
     ],
   },
   {
@@ -216,6 +218,7 @@ export const techGroupsData: TechGroup[] = [
       { name: "Google Sheets", description: "مزامنة الجداول واستخراج البيانات" },
       { name: "Google Calendar", description: "جدولة المواعيد وحجز الجلسات تلقائيًا" },
       { name: "Telegram", description: "قناة استقبال وتفاعل مباشر مع المستخدمين" },
+      { name: "WhatsApp", description: "أتمتة المحادثات والحجوزات عبر واتساب" },
     ],
   },
   {
@@ -226,6 +229,35 @@ export const techGroupsData: TechGroup[] = [
       { name: "ReAct", description: "التفكير التفاعلي واتخاذ الإجراءات بالتسلسل" },
       { name: "السياق (Context)", description: "إدارة الذاكرة والنافذة السياقية" },
       { name: "استخدام الأدوات (Tool Calling)", description: "تمكين النماذج من تشغيل دوال برمجية" },
+    ],
+  },
+  {
+    groupName: "التطوير والواجهات",
+    description: "بناء تطبيقات ويب كاملة من الواجهة إلى الخادم",
+    items: [
+      { name: "React", description: "بناء واجهات تفاعلية حديثة" },
+      { name: "TypeScript", description: "كود آمن وقابل للصيانة" },
+      { name: "Vite", description: "بيئة تطوير وبناء سريعة" },
+      { name: "Next.js", description: "تطبيقات ويب كاملة مع رندر من جهة الخادم" },
+    ],
+  },
+  {
+    groupName: "الاستضافة والنشر",
+    description: "منصات نشر سريعة وموثوقة للمشاريع",
+    items: [
+      { name: "Vercel", description: "نشر تلقائي للواجهات والتطبيقات" },
+      { name: "Cloudflare", description: "استضافة وشبكة توصيل وحماية" },
+      { name: "Netlify", description: "نشر المواقع والدوال الخلفية" },
+      { name: "Render", description: "استضافة الخوادم والخدمات الخلفية" },
+    ],
+  },
+  {
+    groupName: "أدوات الإنتاج",
+    description: "أدوات مساعدة للمحتوى والتحليل والوسائط",
+    items: [
+      { name: "FFmpeg", description: "معالجة الفيديو واستخراج الإطارات" },
+      { name: "Windsor.ai", description: "تجميع وتحليل بيانات التسويق والسوشيال" },
+      { name: "Higgsfield", description: "توليد صور وفيديو بالذكاء الاصطناعي" },
     ],
   },
 ];
