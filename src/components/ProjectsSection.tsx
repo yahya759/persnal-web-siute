@@ -401,7 +401,7 @@ export function ProjectsSection({ projects, githubWorkflowsUrl }: ProjectsSectio
                         className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-semibold text-white bg-amber-600 hover:bg-amber-500 rounded-xl shadow-md shadow-amber-600/25"
                       >
                         <ShoppingCart className="w-4 h-4" />
-                        <span>شراء المشروع [رابط مؤقت]</span>
+                        <span>شراء المشروع</span>
                       </a>
                     )}
                   </div>
