@@ -120,7 +120,7 @@ export function GuidesSection({ guides }: GuidesSectionProps) {
         {/* Guide Reader / Evaluation Modal with AnimatePresence */}
         <AnimatePresence>
           {activeGuide && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto">
+            <div className="fixed inset-0 z-50 flex justify-center p-4 overflow-y-auto">
               <motion.div 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -134,7 +134,7 @@ export function GuidesSection({ guides }: GuidesSectionProps) {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.93, y: 15 }}
                 transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                className="relative z-10 w-full max-w-2xl my-8 rounded-3xl bg-[#0C0E14] border border-white/10 p-6 sm:p-8 text-right space-y-6 shadow-2xl"
+                className="relative z-10 w-full max-w-2xl my-auto rounded-3xl bg-[#0C0E14] border border-white/10 p-6 sm:p-8 text-right space-y-6 shadow-2xl"
               >
                 {/* Header */}
                 <div className="flex items-center justify-between border-b border-white/[0.08] pb-4">

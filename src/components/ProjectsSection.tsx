@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   GitFork, 
@@ -20,7 +20,9 @@ import {
   CheckCircle,
   FileCode2,
   Terminal,
-  Cpu
+  Cpu,
+  Link2,
+  Check
 } from 'lucide-react';
 import { ProjectItem } from '../data/portfolioData';
 
@@ -31,6 +33,49 @@ interface ProjectsSectionProps {
 
 export function ProjectsSection({ projects, githubWorkflowsUrl }: ProjectsSectionProps) {
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+
+  const baseTitleRef = useRef(typeof document !== 'undefined' ? document.title : '');
+
+  const openProject = (project: ProjectItem) => {
+    setSelectedProject(project);
+    window.history.replaceState(null, '', `#project=${project.id}`);
+    document.title = `${project.title} | يحيى موسى`;
+  };
+
+  const closeProject = () => {
+    setSelectedProject(null);
+    window.history.replaceState(null, '', window.location.pathname + window.location.search);
+    document.title = baseTitleRef.current;
+  };
+
+  // Deep link: opening /#project=<id> opens that project's details directly
+  useEffect(() => {
+    const syncFromHash = () => {
+      const match = window.location.hash.match(/^#project=([\w-]+)$/);
+      if (!match) return;
+      const found = projects.find((p) => p.id === match[1]);
+      if (found) {
+        setSelectedProject(found);
+        document.title = `${found.title} | يحيى موسى`;
+        document.getElementById('projects')?.scrollIntoView({ block: 'start' });
+      }
+    };
+    syncFromHash();
+    window.addEventListener('hashchange', syncFromHash);
+    return () => window.removeEventListener('hashchange', syncFromHash);
+  }, [projects]);
+
+  const copyProjectLink = async (project: ProjectItem) => {
+    const url = `${window.location.origin}${window.location.pathname}#project=${project.id}`;
+    try {
+      await navigator.clipboard.writeText(url);
+    } catch {
+      window.prompt('انسخ الرابط:', url);
+    }
+    setCopiedId(project.id);
+    setTimeout(() => setCopiedId(null), 2000);
+  };
   const [downloadSuccessId, setDownloadSuccessId] = useState<string | null>(null);
 
   const getProjectIcon = (id: string) => {
@@ -140,11 +185,11 @@ export function ProjectsSection({ projects, githubWorkflowsUrl }: ProjectsSectio
                 viewport={{ once: true, amount: 0.15 }}
                 transition={{ delay: (idx % 3) * 0.07, duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
                 whileHover={{ borderColor: 'rgba(59, 130, 246, 0.6)' }}
-                onClick={() => setSelectedProject(project)}
+                onClick={() => openProject(project)}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
-                    setSelectedProject(project);
+                    openProject(project);
                   }
                 }}
                 tabIndex={0}
@@ -201,37 +246,54 @@ export function ProjectsSection({ projects, githubWorkflowsUrl }: ProjectsSectio
                     <ChevronLeft className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" />
                   </span>
 
-                  {isFree ? (
+                  <div className="flex items-center gap-4">
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
-                        handleDownloadWorkflow(project);
+                        copyProjectLink(project);
                       }}
-                      className="inline-flex items-center gap-1.5 text-sm text-slate-400 hover:text-white transition-colors"
-                      title="تنزيل ملف الـWorkflow بصيغة JSON"
+                      className="inline-flex items-center text-slate-500 hover:text-white transition-colors"
+                      title="نسخ رابط المشروع"
+                      aria-label="نسخ رابط المشروع"
                     >
-                      {downloadSuccessId === project.id ? (
-                        <>
-                          <CheckCircle className="w-4 h-4 text-emerald-400" />
-                          <span className="text-emerald-400">تم التنزيل</span>
-                        </>
+                      {copiedId === project.id ? (
+                        <Check className="w-4 h-4 text-emerald-400" />
                       ) : (
-                        <>
-                          <Download className="w-4 h-4" />
-                          <span>تنزيل</span>
-                        </>
+                        <Link2 className="w-4 h-4" />
                       )}
                     </button>
-                  ) : (
-                    <a
-                      href={project.buyUrl || '#contact'}
-                      onClick={(e) => e.stopPropagation()}
-                      className="inline-flex items-center gap-1.5 text-sm font-medium text-amber-400 hover:text-amber-300 transition-colors"
-                    >
-                      <ShoppingCart className="w-4 h-4" />
-                      <span>شراء</span>
-                    </a>
-                  )}
+                  {isFree ? (
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleDownloadWorkflow(project);
+                        }}
+                        className="inline-flex items-center gap-1.5 text-sm text-slate-400 hover:text-white transition-colors"
+                        title="تنزيل ملف الـWorkflow بصيغة JSON"
+                      >
+                        {downloadSuccessId === project.id ? (
+                          <>
+                            <CheckCircle className="w-4 h-4 text-emerald-400" />
+                            <span className="text-emerald-400">تم التنزيل</span>
+                          </>
+                        ) : (
+                          <>
+                            <Download className="w-4 h-4" />
+                            <span>تنزيل</span>
+                          </>
+                        )}
+                      </button>
+                    ) : (
+                      <a
+                        href={project.buyUrl || '#contact'}
+                        onClick={(e) => e.stopPropagation()}
+                        className="inline-flex items-center gap-1.5 text-sm font-medium text-amber-400 hover:text-amber-300 transition-colors"
+                      >
+                        <ShoppingCart className="w-4 h-4" />
+                        <span>شراء</span>
+                      </a>
+                    )}
+                  </div>
                 </div>
               </motion.article>
             );
@@ -241,12 +303,12 @@ export function ProjectsSection({ projects, githubWorkflowsUrl }: ProjectsSectio
         {/* Unified Project Details Modal with AnimatePresence */}
         <AnimatePresence>
           {selectedProject && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto">
+            <div className="fixed inset-0 z-50 flex justify-center p-4 overflow-y-auto">
               <motion.div 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                onClick={() => setSelectedProject(null)}
+                onClick={() => closeProject()}
                 className="fixed inset-0 bg-black/85 backdrop-blur-sm"
               />
 
@@ -255,16 +317,29 @@ export function ProjectsSection({ projects, githubWorkflowsUrl }: ProjectsSectio
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.93, y: 15 }}
                 transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                className="relative z-10 w-full max-w-2xl my-8 rounded-3xl bg-[#0C0E14] border border-white/10 p-6 sm:p-8 text-right space-y-6 shadow-2xl"
+                className="relative z-10 w-full max-w-2xl my-auto rounded-3xl bg-[#0C0E14] border border-white/10 p-6 sm:p-8 text-right space-y-6 shadow-2xl"
               >
                 {/* Header */}
                 <div className="flex items-center justify-between border-b border-white/[0.08] pb-4">
-                  <button
-                    onClick={() => setSelectedProject(null)}
-                    className="p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-white/[0.06] transition-colors"
-                  >
-                    <X className="w-5 h-5" />
-                  </button>
+                  <div className="flex items-center gap-1">
+                    <button
+                      onClick={() => closeProject()}
+                      className="p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-white/[0.06] transition-colors"
+                      aria-label="إغلاق"
+                    >
+                      <X className="w-5 h-5" />
+                    </button>
+                    <button
+                      onClick={() => copyProjectLink(selectedProject)}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs text-slate-300 hover:text-white rounded-lg hover:bg-white/[0.06] transition-colors"
+                    >
+                      {copiedId === selectedProject.id ? (
+                        <><Check className="w-4 h-4 text-emerald-400" /><span className="text-emerald-400">تم نسخ الرابط</span></>
+                      ) : (
+                        <><Link2 className="w-4 h-4" /><span>نسخ رابط المشروع</span></>
+                      )}
+                    </button>
+                  </div>
                   <div className="text-right">
                     <div className="flex items-center gap-2 justify-end">
                       <span className={`text-xs font-semibold px-2.5 py-0.5 rounded-md border ${
@@ -378,7 +453,7 @@ export function ProjectsSection({ projects, githubWorkflowsUrl }: ProjectsSectio
 
                   <div className="flex items-center gap-2">
                     <button
-                      onClick={() => setSelectedProject(null)}
+                      onClick={() => closeProject()}
                       className="px-4 py-2.5 text-xs font-medium text-slate-400 hover:text-white"
                     >
                       إغلاق
